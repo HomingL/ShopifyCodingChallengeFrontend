@@ -16,7 +16,7 @@ type SearchListBoxProps = {
 
 export const SearchListBox: FC<SearchListBoxProps> = ({ text, movies, onAdd, nominations }) => {
   let nominationTitles = nominations.map(nomination => nomination.Title)
-  console.log(nominationTitles)
+
   return (
     <BoxLayout>
       <Typography variant={"h5"}> Results for "{text}" </Typography>
@@ -32,9 +32,8 @@ type SearchListProps = {
 }
 
 const SearchList: FC<SearchListProps> = ({ movies, onAdd, nominationTitles }) => {
-  console.log("movies are:")
+
   // movies != undefined ? console.log(movies[0].Title) : console.log("length 0")
-  console.log(movies)
   const classes = useStyles();
 
   const handleAdd = (index: number) => {

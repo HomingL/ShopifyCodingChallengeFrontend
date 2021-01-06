@@ -10,8 +10,6 @@ type NominationBoxProps = {
 }
 
 export const NominationBox: FC<NominationBoxProps> = ({ movies, onDelete }) => {
-  console.log("nominations:")
-  console.log(movies)
 
   const handleDelete = (index :number ) => {
     onDelete(movies[index])

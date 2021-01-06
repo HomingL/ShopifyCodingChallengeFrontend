@@ -14,9 +14,9 @@ type Props = RouteComponentProps<{
 
 export const Search: FC<Props> = () => {
   // get from local storage
-  let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+  // let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
   const [movies, setMovies] = useState<MovieType[]>([])
-  const [nominations, setNominations] = useState<MovieType[]>(nominationsLocalStorage)
+  const [nominations, setNominations] = useState<MovieType[]>([])
   const [title, setTitle] = useState("")
 
   const handleSearchUpdate = (title: string) => {
@@ -38,15 +38,24 @@ export const Search: FC<Props> = () => {
     fetch(`http://www.omdbapi.com/?apikey=c15f2303&s=${title}`)
     .then((x) => x.json())
     .then((x) => {setMovies(x.Search)})
-    console.log(title)
   },[title])
 
-  useEffect(() => {
+  // run once after rendered to get nomination data from local storage
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+  //     setNominations(nominationsLocalStorage)
+  //   }
 
-    localStorage.setItem("nominations", JSON.stringify(nominations))
-    console.log("localstorage :")
-    console.log(nominationsLocalStorage)
-  }, [nominations])
+  // }, [])
+
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     localStorage.setItem("nominations", JSON.stringify(nominations))
+  //   }
+  //   // console.log("localstorage :")
+  //   // console.log(nominationsLocalStorage)
+  // }, [nominations])
 
   return (
     <Grid container>
