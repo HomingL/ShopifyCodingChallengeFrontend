@@ -35,7 +35,7 @@ export const Search: FC<Props> = () => {
     }
   
   useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=c15f2303&s=${title}`)
+    fetch(`https://www.omdbapi.com/?apikey=c15f2303&s=${title}`)
     .then((x) => x.json())
     .then((x) => {setMovies(x.Search)})
   },[title])
