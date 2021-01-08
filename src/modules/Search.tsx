@@ -14,9 +14,9 @@ type Props = RouteComponentProps<{
 
 export const Search: FC<Props> = () => {
   // get from local storage
-  // let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+  let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
   const [movies, setMovies] = useState<MovieType[]>([])
-  const [nominations, setNominations] = useState<MovieType[]>([])
+  const [nominations, setNominations] = useState<MovieType[]>(nominationsLocalStorage)
   const [title, setTitle] = useState("")
 
   const handleSearchUpdate = (title: string) => {
@@ -42,20 +42,14 @@ export const Search: FC<Props> = () => {
 
   // run once after rendered to get nomination data from local storage
   // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
-  //     setNominations(nominationsLocalStorage)
-  //   }
-
+    
+  //   let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+  //   setNominations(nominationsLocalStorage)
   // }, [])
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     localStorage.setItem("nominations", JSON.stringify(nominations))
-  //   }
-  //   // console.log("localstorage :")
-  //   // console.log(nominationsLocalStorage)
-  // }, [nominations])
+  useEffect(() => {
+    localStorage.setItem("nominations", JSON.stringify(nominations))
+  }, [nominations])
 
   return (
     <Grid container>
