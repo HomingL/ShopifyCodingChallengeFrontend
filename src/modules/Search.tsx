@@ -16,16 +16,13 @@ export const Search: FC<Props> = () => {
   const [movies, setMovies] = useState<MovieType[]>([])
   const [nominations, setNominations] = useState<MovieType[]>([])
   const [title, setTitle] = useState("")
+  const [error, setError] = useState("")
 
   const handleSearchUpdate = (title: string) => {
       setTitle(title)
     }
   
   const addNomination = (movie: MovieType) => {
-    // if (nominations.length < 5) {
-    //   setNominations([...nominations, movie])
-    // } else
-    //   alert("You have finished Nomination!")
     setNominations([...nominations, movie])
   }
 
@@ -36,20 +33,26 @@ export const Search: FC<Props> = () => {
   useEffect(() => {
     fetch(`https://www.omdbapi.com/?apikey=c15f2303&s=${title}`)
     .then((x) => x.json())
-    .then((x) => {setMovies(x.Search)})
+    .then((x) => {{x.Error == "Incorrect IMDb ID." ? setError("") : setError(x.Error)}
+    setMovies(x.Search)
+    console.log("error:")
+    console.log(error)})
+    // .then((x) => {setMovies(x.Search)})
+    
   },[title])
 
   // extract nominations from localstorage
-  useEffect(() => {
-    let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
-    setNominations(nominationsLocalStorage)
-  },[])
+  // useEffect(() => {
+  //   let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+  //   setNominations(nominationsLocalStorage)
+  // },[])
 
   useEffect(() => {
     if (nominations.length >= 5){
       alert("You have finished Nomination!")
     }
-    localStorage.setItem("nominations", JSON.stringify(nominations))
+    // localStorage.setItem("nominations", JSON.stringify(nominations))
+    // console.log(nominations)
   }, [nominations])
 
   return (
@@ -64,6 +67,7 @@ export const Search: FC<Props> = () => {
             text={title}
             onAdd={addNomination}
             nominations={nominations}
+            response={error}
           />
       </Grid>
       <Grid item md={6} xs={12}>

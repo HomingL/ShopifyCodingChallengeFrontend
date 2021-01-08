@@ -11,16 +11,17 @@ type SearchListBoxProps = {
   movies: Movie[]
   onAdd: (movies: Movie) => void
   nominations: Movie[]
-  
+  response: string
 }
 
-export const SearchListBox: FC<SearchListBoxProps> = ({ text, movies, onAdd, nominations }) => {
+export const SearchListBox: FC<SearchListBoxProps> = ({ text, movies, onAdd, nominations, response }) => {
   let nominationTitles = nominations.map(nomination => nomination.Title)
+  console.log(response)
 
   return (
     <BoxLayout>
       <Typography variant={"h5"}> Results for "{text}" </Typography>
-      <SearchList movies={movies} onAdd={onAdd} nominationTitles={nominationTitles}/>
+      <SearchList movies={movies} onAdd={onAdd} nominationTitles={nominationTitles} response={response}/>
     </BoxLayout>
   )
 }
@@ -29,9 +30,10 @@ type SearchListProps = {
   movies: Movie[]
   onAdd: (movies: Movie) => void
   nominationTitles: string[]
+  response: string
 }
 
-const SearchList: FC<SearchListProps> = ({ movies, onAdd, nominationTitles }) => {
+const SearchList: FC<SearchListProps> = ({ movies, onAdd, nominationTitles, response }) => {
 
   // movies != undefined ? console.log(movies[0].Title) : console.log("length 0")
   const classes = useStyles();
@@ -66,7 +68,6 @@ const SearchList: FC<SearchListProps> = ({ movies, onAdd, nominationTitles }) =>
               <AddIcon />
             </IconButton>
           </div>
-
         </Grid>)
       } else {
         return (        
@@ -79,7 +80,7 @@ const SearchList: FC<SearchListProps> = ({ movies, onAdd, nominationTitles }) =>
         </div>
       </Grid>)
       }
-    }): <h1> no result</h1>}
+    }): <Typography> {response} </Typography> }
     </Grid>
   )
 }
