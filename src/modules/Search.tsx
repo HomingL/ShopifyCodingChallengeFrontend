@@ -5,8 +5,6 @@ import SearchBox from "./SearchEngine"
 import { Movie as MovieType } from "src/types/movie"
 import SearchListBox from "./SearchList"
 import NominationBox from "./Nomination"
-import { Alert } from '@material-ui/lab';
-
 
 type Props = RouteComponentProps<{
 }>
@@ -14,9 +12,9 @@ type Props = RouteComponentProps<{
 
 export const Search: FC<Props> = () => {
   // get from local storage
-  let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+  // let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
   const [movies, setMovies] = useState<MovieType[]>([])
-  const [nominations, setNominations] = useState<MovieType[]>(nominationsLocalStorage)
+  const [nominations, setNominations] = useState<MovieType[]>([])
   const [title, setTitle] = useState("")
 
   const handleSearchUpdate = (title: string) => {
@@ -24,10 +22,11 @@ export const Search: FC<Props> = () => {
     }
   
   const addNomination = (movie: MovieType) => {
-    if (nominations.length < 5) {
-      setNominations([...nominations, movie])
-    } else
-      alert("You have finished Nomination!")
+    // if (nominations.length < 5) {
+    //   setNominations([...nominations, movie])
+    // } else
+    //   alert("You have finished Nomination!")
+    setNominations([...nominations, movie])
   }
 
   const removeNomination = (movie: MovieType) => {
@@ -40,14 +39,16 @@ export const Search: FC<Props> = () => {
     .then((x) => {setMovies(x.Search)})
   },[title])
 
-  // run once after rendered to get nomination data from local storage
-  // useEffect(() => {
-    
-  //   let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
-  //   setNominations(nominationsLocalStorage)
-  // }, [])
+  // extract nominations from localstorage
+  useEffect(() => {
+    let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+    setNominations(nominationsLocalStorage)
+  },[])
 
   useEffect(() => {
+    if (nominations.length >= 5){
+      alert("You have finished Nomination!")
+    }
     localStorage.setItem("nominations", JSON.stringify(nominations))
   }, [nominations])
 
