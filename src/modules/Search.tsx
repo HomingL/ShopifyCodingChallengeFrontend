@@ -40,10 +40,10 @@ export const Search: FC<Props> = () => {
   },[title])
 
   // extract nominations from localstorage
-  useEffect(() => {
-    let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
-    setNominations(nominationsLocalStorage)
-  },[])
+  // useEffect(() => {
+  //   let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+  //   setNominations(nominationsLocalStorage)
+  // },[])
 
   useEffect(() => {
     if (nominations.length >= 5){
