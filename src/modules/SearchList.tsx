@@ -59,52 +59,44 @@ const SearchList: FC<SearchListProps> = ({ movies, onAdd, nominationTitles, resp
       if (!nominationTitles.includes(movie.Title)) {
       return (
         <Grid item xs={12} key={index}>
-            {/* <SearchListItem movie={movie} index={index} onAdd={onAdd}/> */}
-          <div className={classes.skill}>
-            <Typography variant="subtitle1" className={classes.title} color="primary">
-              <strong>{movie.Title}  {movie.Year}</strong>
-            </Typography>
-            <IconButton onClick={() => handleAdd(index)}>
-              <AddIcon />
-            </IconButton>
-          </div>
+            <SearchListItem movie={movie} index={index} onAdd={handleAdd} displayAdd={true}/>
         </Grid>)
       } else {
         return (        
         <Grid item xs={12} key={index}>
-          {/* <SearchListItem movie={movie} index={index} onAdd={onAdd}/> */}
-        <div className={classes.skill}>
-          <Typography variant="subtitle1" className={classes.title} color="primary">
-            <strong>{movie.Title}  {movie.Year}</strong>
-          </Typography>
-        </div>
-      </Grid>)
+          <SearchListItem movie={movie} index={index} onAdd={handleAdd} displayAdd={false}/>
+        </Grid>)
       }
     }): <Typography> {response} </Typography> }
     </Grid>
   )
 }
 
-// type SearchListItemProps = {
-//   movie: Movie
-//   index: number
-// }
+type SearchListItemProps = {
+  movie: Movie
+  index: number
+  displayAdd: boolean
+  onAdd: (index:number) => void
+}
 
-// const SearchListItem: FC<SearchListItemProps> = ({ movie, index}) => {
-//   const classes = useStyles();
-//   const { movies } = useContext(MoviesContext);
+const SearchListItem: FC<SearchListItemProps> = ({ movie, index, displayAdd, onAdd }) => {
+  const classes = useStyles()
+  const handleAdd = (index: number) => {
+    onAdd(index)
+  } 
 
-//   return (
-//     <div className={classes.skill}>
-//       <Typography variant="subtitle1" className={classes.title} color="primary">
-//         <strong>{movie.Title}  {movie.Year}</strong>
-//       </Typography>
-//       <IconButton>
-//         <AddIcon onClick={() => handleAdd(index)}/>
-//       </IconButton>
-//     </div>
-//   )
-// }
+  return (
+    <div className={classes.skill}>
+      <Typography variant="subtitle1" className={classes.title} color="primary">
+        <strong>{movie.Title}  {movie.Year}</strong>
+      </Typography>
+      
+      {displayAdd && (<IconButton onClick={() => handleAdd(index)}>
+        <AddIcon />
+      </IconButton>) }
+    </div>
+  )
+}
 
 const useStyles = makeStyles<Theme>((theme: Theme) => ({
   title: {
