@@ -35,8 +35,11 @@ $ npm run serve
 - Add a movie from the search results to our nomination list
 - View the list of films already nominated
 - Remove a nominee from the nomination list
-- Save nomination lists if the user leaves the page
-    - Error during deployment but working in local development 
+
+Extra:
+- Save nomination lists if the user leaves the page (on Progress)
+    - Not working during deployment but working in local development 
     - Error : localstorage is not defined server side rendering
+- Detail of the movie shows up by clicking on the name of the movie in the Search List
 
 ```
