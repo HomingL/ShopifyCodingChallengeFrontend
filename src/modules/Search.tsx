@@ -31,7 +31,7 @@ export const Search: FC<Props> = () => {
     }
   
   useEffect(() => {
-    fetch(`https://www.omdbapi.com/?apikey=c15f2303&s=${title}`)
+    fetch(`https://www.omdbapi.com/?apikey=${process.env.GATSBY_OMDB_API_KEY}&s=${title}`)
     .then((x) => x.json())
     .then((x) => {{x.Error == "Incorrect IMDb ID." ? setError("") : setError(x.Error)}
     setMovies(x.Search)
