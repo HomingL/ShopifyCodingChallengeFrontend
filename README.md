@@ -3,9 +3,14 @@
 ```
 ShopifyCodingChallengeFrontend
 
-Deployed on Gatsby Cloud
-Hosted at: https://shopifycodingchallengefrontend.gtsb.io/
+- Deployed on Gatsby Cloud
+- Hosted at: https://shopifycodingchallengefrontend.gtsb.io/
 
+```
+
+### Prerequisites
+```
+- Environmental Variables: Replace with your OMDB API key in `.env.development` file
 
 ```
 ### Development
