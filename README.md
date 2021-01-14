@@ -5,7 +5,8 @@ ShopifyCodingChallengeFrontend
 
 - Challenge Description: https://docs.google.com/document/d/1AZO0BZwn1Aogj4f3PDNe1mhq8pKsXZxtrG--EIbP_-w/edit
 - Deployed on Gatsby Cloud
-- Hosted at: https://shopifycodingchallengefrontend.gtsb.io/
+- Hosted at: https://shoppies-hongming-li.netlify.app/
+
 
 ```
 
@@ -37,7 +38,7 @@ $ npm run serve
 - Remove a nominee from the nomination list
 
 Extra:
-- Save nomination lists if the user leaves the page (on Progress)
+- Save nomination lists if the user leaves the page (Solved)
     - Not working during deployment but working in local development 
     - Error : localstorage is not defined server side rendering
 - Detail of the movie shows up by clicking on the name of the movie in the Search List
