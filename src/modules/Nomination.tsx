@@ -4,6 +4,7 @@ import { Typography, IconButton, Theme, Grid } from "@material-ui/core"
 import { Movie } from "src/types/movie"
 import { makeStyles } from "@material-ui/core/styles"
 import DeleteIcon from '@material-ui/icons/Delete';
+
 type NominationBoxProps = {
   movies: Movie[]
   onDelete: (movie: Movie) => void

@@ -23,7 +23,8 @@ export const Search: FC<Props> = () => {
     }
   
   const addNomination = (movie: MovieType) => {
-    setNominations([...nominations, movie])
+    if (nominations.length < 5) 
+      setNominations([...nominations, movie])
   }
 
   const removeNomination = (movie: MovieType) => {
