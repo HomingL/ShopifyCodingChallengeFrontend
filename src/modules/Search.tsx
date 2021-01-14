@@ -13,10 +13,10 @@ type Props = RouteComponentProps<{
 export const Search: FC<Props> = () => {
   // get from local storage
   
-  // const hasWindow = typeof window !== 'undefined'
-  // let nominationsLocalStorage = hasWindow ? JSON.parse(localStorage.getItem("nominations") ||"") : []
+  const hasWindow = typeof window !== 'undefined'
+  let nominationsLocalStorage = hasWindow ? JSON.parse(localStorage.getItem("nominations") ||"") : []
   const [movies, setMovies] = useState<MovieType[]>([])
-  const [nominations, setNominations] = useState<MovieType[]>([])
+  const [nominations, setNominations] = useState<MovieType[]>(nominationsLocalStorage)
   const [title, setTitle] = useState("")
   const [error, setError] = useState("")
 
@@ -45,16 +45,16 @@ export const Search: FC<Props> = () => {
   },[title])
 
   // extract nominations from localstorage
-  // useEffect(() => {
-  //   // let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
-  //   setNominations(nominationsLocalStorage)
-  // },[])
+  useEffect(() => {
+    // let nominationsLocalStorage = JSON.parse(localStorage.getItem("nominations") ||"") || []
+    setNominations(nominationsLocalStorage)
+  },[])
 
   useEffect(() => {
     if (nominations.length >= 5){
       alert("You have finished Nomination!")
     }
-    // hasWindow && localStorage.setItem("nominations", JSON.stringify(nominations))
+    hasWindow && localStorage.setItem("nominations", JSON.stringify(nominations))
     // console.log(nominations)
   }, [nominations])
 
