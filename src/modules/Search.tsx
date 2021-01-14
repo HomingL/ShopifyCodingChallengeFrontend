@@ -14,7 +14,7 @@ export const Search: FC<Props> = () => {
   // get from local storage
   
   const hasWindow = typeof window !== 'undefined'
-  let nominationsLocalStorage = JSON.parse(hasWindow && localStorage.getItem("nominations") ||"") || []
+  let nominationsLocalStorage = hasWindow ? JSON.parse(localStorage.getItem("nominations") ||"") : []
   const [movies, setMovies] = useState<MovieType[]>([])
   const [nominations, setNominations] = useState<MovieType[]>(nominationsLocalStorage)
   const [title, setTitle] = useState("")
