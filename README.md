@@ -4,7 +4,7 @@
 ShopifyCodingChallengeFrontend
 
 - Challenge Description: https://docs.google.com/document/d/1AZO0BZwn1Aogj4f3PDNe1mhq8pKsXZxtrG--EIbP_-w/edit
-- Deployed on Gatsby Cloud
+- Deployed on Netlify
 - Hosted at: https://shoppies-hongming-li.netlify.app/
 
 
