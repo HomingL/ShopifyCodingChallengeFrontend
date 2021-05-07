@@ -1,6 +1,10 @@
 # Shoppies
 
 ## App Description
+ShopifyCodingChallengeFrontend
+
+- Hosted at: https://shoppies-hongming-li.netlify.app/
+
 
 Shoppies allows users to search movies in OMDB and select 5 movies for nomination. 
 
